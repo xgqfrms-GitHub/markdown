@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Marked by xgqfrms-GitHub</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Marked</h1>
+        <h2>A markdown parser and compiler. Built for speed.</h2>
+        <a href="https://github.com/xgqfrms-GitHub/marked" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="marked" class="anchor" href="#marked" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>marked</h1>
+
+<blockquote>
+<p>A full-featured markdown parser and compiler, written in JavaScript. Built
+for speed.</p>
+</blockquote>
+
+<p><a href="http://badge.fury.io/js/marked"><img src="https://badge.fury.io/js/marked.png" alt="NPM version"></a></p>
+
+<h2>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install</h2>
+
+<div class="highlight highlight-source-shell"><pre>npm install marked --save</pre></div>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Minimal usage:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> marked <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>marked<span class="pl-pds">'</span></span>);
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">marked</span>(<span class="pl-s"><span class="pl-pds">'</span>I am using __markdown__.<span class="pl-pds">'</span></span>));
+<span class="pl-c">// Outputs: &lt;p&gt;I am using &lt;strong&gt;markdown&lt;/strong&gt;.&lt;/p&gt;</span></pre></div>
+
+<p>Example setting options with default values:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> marked <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>marked<span class="pl-pds">'</span></span>);
+<span class="pl-smi">marked</span>.<span class="pl-en">setOptions</span>({
+  renderer<span class="pl-k">:</span> <span class="pl-k">new</span> <span class="pl-en">marked.Renderer</span>(),
+  gfm<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+  tables<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+  breaks<span class="pl-k">:</span> <span class="pl-c1">false</span>,
+  pedantic<span class="pl-k">:</span> <span class="pl-c1">false</span>,
+  sanitize<span class="pl-k">:</span> <span class="pl-c1">false</span>,
+  smartLists<span class="pl-k">:</span> <span class="pl-c1">true</span>,
+  smartypants<span class="pl-k">:</span> <span class="pl-c1">false</span>
+});
+
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">marked</span>(<span class="pl-s"><span class="pl-pds">'</span>I am using __markdown__.<span class="pl-pds">'</span></span>));</pre></div>
+
+<h3>
+<a id="browser" class="anchor" href="#browser" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Browser</h3>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;!doctype html&gt;
+&lt;<span class="pl-ent">html</span>&gt;
+&lt;<span class="pl-ent">head</span>&gt;
+  &lt;<span class="pl-ent">meta</span> <span class="pl-e">charset</span>=<span class="pl-s"><span class="pl-pds">"</span>utf-8<span class="pl-pds">"</span></span>/&gt;
+  &lt;<span class="pl-ent">title</span>&gt;Marked in the browser&lt;/<span class="pl-ent">title</span>&gt;
+<span class="pl-s1">  &lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>lib/marked.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</span>
+&lt;/<span class="pl-ent">head</span>&gt;
+&lt;<span class="pl-ent">body</span>&gt;
+  &lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>content<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
+<span class="pl-s1">  &lt;<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s1">    <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">'</span>content<span class="pl-pds">'</span></span>).<span class="pl-smi">innerHTML</span> <span class="pl-k">=</span></span>
+<span class="pl-s1">      <span class="pl-en">marked</span>(<span class="pl-s"><span class="pl-pds">'</span># Marked in browser<span class="pl-cce">\n\n</span>Rendered by **marked**.<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">  &lt;/<span class="pl-ent">script</span>&gt;</span>
+&lt;/<span class="pl-ent">body</span>&gt;
+&lt;/<span class="pl-ent">html</span>&gt;</pre></div>
+
+<h2>
+<a id="markedmarkdownstring-options-callback" class="anchor" href="#markedmarkdownstring-options-callback" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>marked(markdownString [,options] [,callback])</h2>
+
+<h3>
+<a id="markdownstring" class="anchor" href="#markdownstring" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>markdownString</h3>
+
+<p>Type: <code>string</code></p>
+
+<p>String of markdown source to be compiled.</p>
+
+<h3>
+<a id="options" class="anchor" href="#options" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>options</h3>
+
+<p>Type: <code>object</code></p>
+
+<p>Hash of options. Can also be set using the <code>marked.setOptions</code> method as seen
+above.</p>
+
+<h3>
+<a id="callback" class="anchor" href="#callback" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>callback</h3>
+
+<p>Type: <code>function</code></p>
+
+<p>Function called when the <code>markdownString</code> has been fully parsed when using
+async highlighting. If the <code>options</code> argument is omitted, this can be used as
+the second argument.</p>
+
+<h2>
+<a id="options-1" class="anchor" href="#options-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Options</h2>
+
+<h3>
+<a id="highlight" class="anchor" href="#highlight" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>highlight</h3>
+
+<p>Type: <code>function</code></p>
+
+<p>A function to highlight code blocks. The first example below uses async highlighting with
+<a href="https://github.com/rvagg/node-pygmentize-bundled">node-pygmentize-bundled</a>, and the second is a synchronous example using
+<a href="https://github.com/isagalaev/highlight.js">highlight.js</a>:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> marked <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>marked<span class="pl-pds">'</span></span>);
+
+<span class="pl-k">var</span> markdownString <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>```js<span class="pl-cce">\n</span> console.log("hello"); <span class="pl-cce">\n</span>```<span class="pl-pds">'</span></span>;
+
+<span class="pl-c">// Async highlighting with pygmentize-bundled</span>
+<span class="pl-smi">marked</span>.<span class="pl-en">setOptions</span>({
+  <span class="pl-en">highlight</span><span class="pl-k">:</span> <span class="pl-k">function</span> (<span class="pl-smi">code</span>, <span class="pl-smi">lang</span>, <span class="pl-smi">callback</span>) {
+    <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>pygmentize-bundled<span class="pl-pds">'</span></span>)({ lang<span class="pl-k">:</span> lang, format<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>html<span class="pl-pds">'</span></span> }, code, <span class="pl-k">function</span> (<span class="pl-smi">err</span>, <span class="pl-smi">result</span>) {
+      <span class="pl-en">callback</span>(err, <span class="pl-smi">result</span>.<span class="pl-c1">toString</span>());
+    });
+  }
+});
+
+<span class="pl-c">// Using async version of marked</span>
+<span class="pl-en">marked</span>(markdownString, <span class="pl-k">function</span> (<span class="pl-smi">err</span>, <span class="pl-smi">content</span>) {
+  <span class="pl-k">if</span> (err) <span class="pl-k">throw</span> err;
+  <span class="pl-en">console</span>.<span class="pl-c1">log</span>(content);
+});
+
+<span class="pl-c">// Synchronous highlighting with highlight.js</span>
+<span class="pl-smi">marked</span>.<span class="pl-en">setOptions</span>({
+  <span class="pl-en">highlight</span><span class="pl-k">:</span> <span class="pl-k">function</span> (<span class="pl-smi">code</span>) {
+    <span class="pl-k">return</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>highlight.js<span class="pl-pds">'</span></span>).<span class="pl-en">highlightAuto</span>(code).<span class="pl-c1">value</span>;
+  }
+});
+
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">marked</span>(markdownString));</pre></div>
+
+<h4>
+<a id="highlight-arguments" class="anchor" href="#highlight-arguments" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>highlight arguments</h4>
+
+<p><code>code</code></p>
+
+<p>Type: <code>string</code></p>
+
+<p>The section of code to pass to the highlighter.</p>
+
+<p><code>lang</code></p>
+
+<p>Type: <code>string</code></p>
+
+<p>The programming language specified in the code block.</p>
+
+<p><code>callback</code></p>
+
+<p>Type: <code>function</code></p>
+
+<p>The callback function to call when using an async highlighter.</p>
+
+<h3>
+<a id="renderer" class="anchor" href="#renderer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>renderer</h3>
+
+<p>Type: <code>object</code>
+Default: <code>new Renderer()</code></p>
+
+<p>An object containing functions to render tokens to HTML.</p>
+
+<h4>
+<a id="overriding-renderer-methods" class="anchor" href="#overriding-renderer-methods" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Overriding renderer methods</h4>
+
+<p>The renderer option allows you to render tokens in a custom manner. Here is an
+example of overriding the default heading token rendering by adding an embedded anchor tag like on GitHub:</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> marked <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>marked<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> renderer <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">marked.Renderer</span>();
+
+<span class="pl-smi">renderer</span>.<span class="pl-en">heading</span> <span class="pl-k">=</span> <span class="pl-k">function</span> (<span class="pl-smi">text</span>, <span class="pl-smi">level</span>) {
+  <span class="pl-k">var</span> escapedText <span class="pl-k">=</span> <span class="pl-smi">text</span>.<span class="pl-c1">toLowerCase</span>().<span class="pl-c1">replace</span>(<span class="pl-sr"><span class="pl-pds">/</span><span class="pl-c1">[<span class="pl-k">^</span><span class="pl-c1">\w</span>]</span><span class="pl-k">+</span><span class="pl-pds">/</span>g</span>, <span class="pl-s"><span class="pl-pds">'</span>-<span class="pl-pds">'</span></span>);
+
+  <span class="pl-k">return</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;h<span class="pl-pds">'</span></span> <span class="pl-k">+</span> level <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>&gt;&lt;a name="<span class="pl-pds">'</span></span> <span class="pl-k">+</span>
+                escapedText <span class="pl-k">+</span>
+                 <span class="pl-s"><span class="pl-pds">'</span>" class="anchor" href="#<span class="pl-pds">'</span></span> <span class="pl-k">+</span>
+                 escapedText <span class="pl-k">+</span>
+                 <span class="pl-s"><span class="pl-pds">'</span>"&gt;&lt;span class="header-link"&gt;&lt;/span&gt;&lt;/a&gt;<span class="pl-pds">'</span></span> <span class="pl-k">+</span>
+                  text <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;/h<span class="pl-pds">'</span></span> <span class="pl-k">+</span> level <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>&gt;<span class="pl-pds">'</span></span>;
+},
+
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-en">marked</span>(<span class="pl-s"><span class="pl-pds">'</span># heading+<span class="pl-pds">'</span></span>, { renderer<span class="pl-k">:</span> renderer }));</pre></div>
+
+<p>This code will output the following HTML:</p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">h1</span>&gt;
+  &lt;<span class="pl-ent">a</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>heading-<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>anchor<span class="pl-pds">"</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>#heading-<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">span</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>header-link<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">span</span>&gt;
+  &lt;/<span class="pl-ent">a</span>&gt;
+  heading+
+&lt;/<span class="pl-ent">h1</span>&gt;</pre></div>
+
+<h4>
+<a id="block-level-renderer-methods" class="anchor" href="#block-level-renderer-methods" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Block level renderer methods</h4>
+
+<ul>
+<li>code(<em>string</em> code, <em>string</em> language)</li>
+<li>blockquote(<em>string</em> quote)</li>
+<li>html(<em>string</em> html)</li>
+<li>heading(<em>string</em> text, <em>number</em>  level)</li>
+<li>hr()</li>
+<li>list(<em>string</em> body, <em>boolean</em> ordered)</li>
+<li>listitem(<em>string</em>  text)</li>
+<li>paragraph(<em>string</em> text)</li>
+<li>table(<em>string</em> header, <em>string</em> body)</li>
+<li>tablerow(<em>string</em> content)</li>
+<li>tablecell(<em>string</em> content, <em>object</em> flags)</li>
+</ul>
+
+<p><code>flags</code> has the following properties:</p>
+
+<div class="highlight highlight-source-js"><pre>{
+    header<span class="pl-k">:</span> <span class="pl-c1">true</span> <span class="pl-k">||</span> <span class="pl-c1">false</span>,
+    align<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>center<span class="pl-pds">'</span></span> <span class="pl-k">||</span> <span class="pl-s"><span class="pl-pds">'</span>left<span class="pl-pds">'</span></span> <span class="pl-k">||</span> <span class="pl-s"><span class="pl-pds">'</span>right<span class="pl-pds">'</span></span>
+}</pre></div>
+
+<h4>
+<a id="inline-level-renderer-methods" class="anchor" href="#inline-level-renderer-methods" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Inline level renderer methods</h4>
+
+<ul>
+<li>strong(<em>string</em> text)</li>
+<li>em(<em>string</em> text)</li>
+<li>codespan(<em>string</em> code)</li>
+<li>br()</li>
+<li>del(<em>string</em> text)</li>
+<li>link(<em>string</em> href, <em>string</em> title, <em>string</em> text)</li>
+<li>image(<em>string</em> href, <em>string</em> title, <em>string</em> text)</li>
+</ul>
+
+<h3>
+<a id="gfm" class="anchor" href="#gfm" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>gfm</h3>
+
+<p>Type: <code>boolean</code>
+Default: <code>true</code></p>
+
+<p>Enable <a href="https://help.github.com/articles/github-flavored-markdown">GitHub flavored markdown</a>.</p>
+
+<h3>
+<a id="tables" class="anchor" href="#tables" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>tables</h3>
+
+<p>Type: <code>boolean</code>
+Default: <code>true</code></p>
+
+<p>Enable GFM <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#wiki-tables">tables</a>.
+This option requires the <code>gfm</code> option to be true.</p>
+
+<h3>
+<a id="breaks" class="anchor" href="#breaks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>breaks</h3>
+
+<p>Type: <code>boolean</code>
+Default: <code>false</code></p>
+
+<p>Enable GFM <a href="https://help.github.com/articles/github-flavored-markdown#newlines">line breaks</a>.
+This option requires the <code>gfm</code> option to be true.</p>
+
+<h3>
+<a id="pedantic" class="anchor" href="#pedantic" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>pedantic</h3>
+
+<p>Type: <code>boolean</code>
+Default: <code>false</code></p>
+
+<p>Conform to obscure parts of <code>markdown.pl</code> as much as possible. Don't fix any of
+the original markdown bugs or poor behavior.</p>
+
+<h3>
+<a id="sanitize" class="anchor" href="#sanitize" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>sanitize</h3>
+
+<p>Type: <code>boolean</code>
+Default: <code>false</code></p>
+
+<p>Sanitize the output. Ignore any HTML that has been input.</p>
+
+<h3>
+<a id="smartlists" class="anchor" href="#smartlists" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>smartLists</h3>
+
+<p>Type: <code>boolean</code>
+Default: <code>true</code></p>
+
+<p>Use smarter list behavior than the original markdown. May eventually be
+default with the old behavior moved into <code>pedantic</code>.</p>
+
+<h3>
+<a id="smartypants" class="anchor" href="#smartypants" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>smartypants</h3>
+
+<p>Type: <code>boolean</code>
+Default: <code>false</code></p>
+
+<p>Use "smart" typograhic punctuation for things like quotes and dashes.</p>
+
+<h2>
+<a id="access-to-lexer-and-parser" class="anchor" href="#access-to-lexer-and-parser" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Access to lexer and parser</h2>
+
+<p>You also have direct access to the lexer and parser if you so desire.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> tokens <span class="pl-k">=</span> <span class="pl-smi">marked</span>.<span class="pl-en">lexer</span>(text, options);
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-smi">marked</span>.<span class="pl-en">parser</span>(tokens));</pre></div>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> lexer <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">marked.Lexer</span>(options);
+<span class="pl-k">var</span> tokens <span class="pl-k">=</span> <span class="pl-smi">lexer</span>.<span class="pl-en">lex</span>(text);
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(tokens);
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-smi">lexer</span>.<span class="pl-c1">rules</span>);</pre></div>
+
+<h2>
+<a id="cli" class="anchor" href="#cli" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>CLI</h2>
+
+<div class="highlight highlight-source-shell"><pre>$ marked -o hello.html
+hello world
+^D
+$ cat hello.html
+<span class="pl-k">&lt;</span>p<span class="pl-k">&gt;</span>hello world<span class="pl-k">&lt;</span>/p<span class="pl-k">&gt;</span></pre></div>
+
+<h2>
+<a id="philosophy-behind-marked" class="anchor" href="#philosophy-behind-marked" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Philosophy behind marked</h2>
+
+<p>The point of marked was to create a markdown compiler where it was possible to
+frequently parse huge chunks of markdown without having to worry about
+caching the compiled output somehow...or blocking for an unnecesarily long time.</p>
+
+<p>marked is very concise and still implements all markdown features. It is also
+now fully compatible with the client-side.</p>
+
+<p>marked more or less passes the official markdown test suite in its
+entirety. This is important because a surprising number of markdown compilers
+cannot pass more than a few tests. It was very difficult to get marked as
+compliant as it is. It could have cut corners in several areas for the sake
+of performance, but did not in order to be exactly what you expect in terms
+of a markdown rendering. In fact, this is why marked could be considered at a
+disadvantage in the benchmarks above.</p>
+
+<p>Along with implementing every markdown feature, marked also implements <a href="http://github.github.com/github-flavored-markdown/">GFM
+features</a>.</p>
+
+<h2>
+<a id="benchmarks" class="anchor" href="#benchmarks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Benchmarks</h2>
+
+<p>node v0.8.x</p>
+
+<div class="highlight highlight-source-shell"><pre>$ node <span class="pl-c1">test</span> --bench
+marked completed <span class="pl-k">in</span> 3411ms.
+marked (gfm) completed <span class="pl-k">in</span> 3727ms.
+marked (pedantic) completed <span class="pl-k">in</span> 3201ms.
+robotskirt completed <span class="pl-k">in</span> 808ms.
+showdown (reuse converter) completed <span class="pl-k">in</span> 11954ms.
+showdown (new converter) completed <span class="pl-k">in</span> 17774ms.
+markdown-js completed <span class="pl-k">in</span> 17191ms.</pre></div>
+
+<p><strong>Marked is now faster than Discount, which is written in C.</strong></p>
+
+<p>For those feeling skeptical: These benchmarks run the entire markdown test suite 1000 times. The test suite tests every feature. It doesn't cater to specific aspects.</p>
+
+<h3>
+<a id="pro-level" class="anchor" href="#pro-level" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Pro level</h3>
+
+<p>You also have direct access to the lexer and parser if you so desire.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> tokens <span class="pl-k">=</span> <span class="pl-smi">marked</span>.<span class="pl-en">lexer</span>(text, options);
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-smi">marked</span>.<span class="pl-en">parser</span>(tokens));</pre></div>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> lexer <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">marked.Lexer</span>(options);
+<span class="pl-k">var</span> tokens <span class="pl-k">=</span> <span class="pl-smi">lexer</span>.<span class="pl-en">lex</span>(text);
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(tokens);
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-smi">lexer</span>.<span class="pl-c1">rules</span>);</pre></div>
+
+<div class="highlight highlight-source-shell"><pre>$ node
+<span class="pl-k">&gt;</span> require(<span class="pl-s"><span class="pl-pds">'</span>marked<span class="pl-pds">'</span></span>).lexer(<span class="pl-s"><span class="pl-pds">'</span>&gt; i am using marked.<span class="pl-pds">'</span></span>)
+[ { <span class="pl-c1">type</span>: <span class="pl-s"><span class="pl-pds">'</span>blockquote_start<span class="pl-pds">'</span></span> },
+  { <span class="pl-c1">type</span>: <span class="pl-s"><span class="pl-pds">'</span>paragraph<span class="pl-pds">'</span></span>,
+    text: <span class="pl-s"><span class="pl-pds">'</span>i am using marked.<span class="pl-pds">'</span></span> },
+  { <span class="pl-c1">type</span>: <span class="pl-s"><span class="pl-pds">'</span>blockquote_end<span class="pl-pds">'</span></span> },
+  links: {} ]</pre></div>
+
+<h2>
+<a id="running-tests--contributing" class="anchor" href="#running-tests--contributing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Running Tests &amp; Contributing</h2>
+
+<p>If you want to submit a pull request, make sure your changes pass the test
+suite. If you're adding a new feature, be sure to add your own test.</p>
+
+<p>The marked test suite is set up slightly strangely: <code>test/new</code> is for all tests
+that are not part of the original markdown.pl test suite (this is where your
+test should go if you make one). <code>test/original</code> is only for the original
+markdown.pl tests. <code>test/tests</code> houses both types of tests after they have been
+combined and moved/generated by running <code>node test --fix</code> or <code>marked --test
+--fix</code>.</p>
+
+<p>In other words, if you have a test to add, add it to <code>test/new/</code> and then
+regenerate the tests with <code>node test --fix</code>. Commit the result. If your test
+uses a certain feature, for example, maybe it assumes GFM is <em>not</em> enabled, you
+can add <code>.nogfm</code> to the filename. So, <code>my-test.text</code> becomes
+<code>my-test.nogfm.text</code>. You can do this with any marked option. Say you want
+line breaks and smartypants enabled, your filename should be:
+<code>my-test.breaks.smartypants.text</code>.</p>
+
+<p>To run the tests:</p>
+
+<div class="highlight highlight-source-shell"><pre><span class="pl-c1">cd</span> marked/
+node <span class="pl-c1">test</span></pre></div>
+
+<h3>
+<a id="contribution-and-license-agreement" class="anchor" href="#contribution-and-license-agreement" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contribution and License Agreement</h3>
+
+<p>If you contribute code to this project, you are implicitly allowing your code
+to be distributed under the MIT license. You are also implicitly verifying that
+all code is your original work. <code>&lt;/legalese&gt;</code></p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<p>Copyright (c) 2011-2014, Christopher Jeffrey. (MIT License)</p>
+
+<p>See LICENSE for more info.</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/xgqfrms-GitHub/marked/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/xgqfrms-GitHub/marked/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/xgqfrms-GitHub/marked"></a> is maintained by <a href="https://github.com/xgqfrms-GitHub">xgqfrms-GitHub</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
